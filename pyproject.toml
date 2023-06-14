@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "mkdocs-pages-j2-plugin"
+version = "0.1.0"
+description = ""
+authors = ["Jacques Supcik <jacques.supcik@hefr.ch>"]
+license = "Apache-2"
+readme = "README.md"
+packages = [{ include = "pagesj2" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mkdocs = "^1.4.3"
+jinja2 = "^3.1.2"
+mkdocs-material = { version = "^9.1.15", optional = true }
+mkdocs-macros-plugin = { version = "^1.0.1", optional = true }
+mkdocs-awesome-pages-plugin = { version = "^2.9.1", optional = true }
+
+[tool.poetry.extras]
+test = [
+    "mkdocs-material",
+    "mkdocs-macros-plugin",
+    "mkdocs-awesome-pages-plugin"
+]
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins]
+
+[tool.poetry.plugins."mkdocs.plugins"]
+pages-j2 = "pagesj2.plugin:PagesJ2Plugin"

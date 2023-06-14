@@ -1,0 +1,10 @@
+site_name: Pages-J2 Plugin Test
+site_description: Test for Pages-J2 Plugin
+docs_dir: docs
+theme: readthedocs
+
+plugins:
+  - search
+  - pages-j2
+  - awesome-pages
+  - macros

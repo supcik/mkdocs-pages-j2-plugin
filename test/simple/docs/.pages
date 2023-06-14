@@ -1,0 +1,5 @@
+title: Page Title
+nav:
+    - Welcome: index.md
+    - My Page 1: p1.md
+    - My Page 2: p2.md
