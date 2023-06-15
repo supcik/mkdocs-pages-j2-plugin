@@ -1,5 +1,4 @@
 ################################################################################
-# @file        : plugin.py
 # @brief       : Pages-J2 Plugin for MkDocs
 # @author      : Jacques Supcik <jacques.supcik@hefr.ch>
 # @date        : 14. June 2023
@@ -8,37 +7,34 @@
 #                Haute école d'ingénierie et d'architecture de Fribourg
 #                Informatique et Systèmes de Communication
 # @attention   : SPDX-License-Identifier: MIT OR Apache-2.0
-# ------------------------------------------------------------------------------
-# @details
-# Pages-J2 Plugin Plugin for MkDocs
 ################################################################################
 
-import collections.abc
+"""Pages-J2 Plugin for MkDocs"""
+
 import logging
 import os
-from datetime import date
-from typing import Type
 
 import jinja2
 from mkdocs.config.base import Config as BaseConfig
-from mkdocs.config.config_options import Type as PluginType
-from mkdocs.exceptions import PluginError
 from mkdocs.plugins import BasePlugin
 
 logger = logging.getLogger("mkdocs.plugins." + __name__)
-logTag = "[pages-j2] -"
+TAG = "[pages-j2] -"
 
 
-class PagesJ2Config(BaseConfig):
-    pass
+class PagesJ2PluginConfig(BaseConfig):
+    """Configuration options for the PagesJ2Plugin"""
 
 
-class PagesJ2Plugin(BasePlugin[PagesJ2Config]):
+# pylint: disable-next=too-few-public-methods
+class PagesJ2Plugin(BasePlugin[PagesJ2PluginConfig]):
+    """Pages-J2 Plugin for MkDocs"""
+
     def on_pre_build(self, config):
         """
         Build the `.pages` files from `pages.j2`
         """
-        logger.info(f"{logTag} Building .pages files")
+        logger.info("%s Building .pages files", TAG)
         for root, _, files in os.walk(config["docs_dir"], topdown=False):
             env = jinja2.Environment(
                 loader=jinja2.FileSystemLoader(root),
@@ -53,10 +49,14 @@ class PagesJ2Plugin(BasePlugin[PagesJ2Config]):
                 # Do not write the file if the content is the same.
                 # Otherwise, the "watcher" will continuously reload the page.
                 if os.path.exists(dst):
-                    with open(dst) as f:
+                    with open(
+                        dst, encoding="utf-8"
+                    ) as f:  # pylint: disable=invalid-name
                         orig = f.read()
                     if content == orig:
                         continue
-                with open(dst, "w") as f:
-                    logger.info(f"{logTag} Writing {dst}")
+                with open(
+                    dst, "w", encoding="utf-8"
+                ) as f:  # pylint: disable=invalid-name
+                    logger.info("%s Writing %s", TAG, dst)
                     f.write(content)
