@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mkdocs-pages-j2-plugin"
-version = "0.1.0"
+version = "0.1.1"
 description = "An MkDocs plugin to generate .pages from pages.j2"
 authors = ["Jacques Supcik <jacques.supcik@hefr.ch>"]
 repository = "https://github.com/supcik/mkdocs-pages-j2-plugin"
@@ -34,6 +34,7 @@ test = [
 black = "^23.3.0"
 pylint = "^2.17.4"
 isort = "^5.12.0"
+pre-commit = "^3.3.3"
 
 [build-system]
 requires = ["poetry-core"]
