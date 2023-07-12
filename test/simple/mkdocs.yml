@@ -1,7 +1,12 @@
 site_name: Pages-J2 Plugin Test
 site_description: Test for Pages-J2 Plugin
+copyright: |
+  2021, {{ version }} Pages-J2 Plugin Test
 docs_dir: docs
 theme: readthedocs
+
+extra:
+  version: 0.0.1
 
 plugins:
   - search

@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "mkdocs-pages-j2-plugin"
 version = "0.1.1"
-description = "An MkDocs plugin to generate .pages from pages.j2"
+description = "An MkDocs plugin to generate '.pages' from 'pages.j2'"
 authors = ["Jacques Supcik <jacques.supcik@hefr.ch>"]
 repository = "https://github.com/supcik/mkdocs-pages-j2-plugin"
 license = "Apache-2"
