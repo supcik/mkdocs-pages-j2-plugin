@@ -44,7 +44,7 @@ class PagesJ2Plugin(BasePlugin[PagesJ2PluginConfig]):
                     continue
 
                 template = env.get_template(name)
-                content = template.render(config=config, env=os.environ)
+                content = template.render(config)
                 dst = os.path.join(root, ".pages")
                 # Do not write the file if the content is the same.
                 # Otherwise, the "watcher" will continuously reload the page.
