@@ -36,6 +36,9 @@ jobs:
       - name: Build package
         run: |
           poetry build
+      - name: Build test site
+        run: |
+          cd test/simple && poetry run mkdocs build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
