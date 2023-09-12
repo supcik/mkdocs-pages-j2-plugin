@@ -38,6 +38,7 @@ jobs:
           poetry build
       - name: Build test site
         run: |
+          poetry install -E test
           cd test/simple && poetry run mkdocs build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
