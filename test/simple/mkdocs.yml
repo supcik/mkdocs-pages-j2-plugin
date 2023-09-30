@@ -11,6 +11,7 @@ extra:
 
 plugins:
   - search
-  - pages-j2
+  - pages-j2:
+      use_extra: true
   - awesome-pages
   - macros

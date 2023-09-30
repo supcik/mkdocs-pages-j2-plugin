@@ -1,7 +1,6 @@
-title: Page Title
 nav:
     - Welcome: index.md
 {%- for i in range(1,3) %}
     - My Page {{ i }}: p{{ i }}.md
 {%- endfor %}
-    - My Page 3: {{ extra.page3 }}.md
+    - My Page 3: {{ page3 }}.md

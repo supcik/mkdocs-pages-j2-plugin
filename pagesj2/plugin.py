@@ -15,6 +15,7 @@ import logging
 import os
 
 import jinja2
+from mkdocs.config import config_options as c
 from mkdocs.config.base import Config as BaseConfig
 from mkdocs.plugins import BasePlugin
 
@@ -24,6 +25,8 @@ TAG = "[pages-j2] -"
 
 class PagesJ2PluginConfig(BaseConfig):
     """Configuration options for the PagesJ2Plugin"""
+
+    use_extra = c.Type(bool, default=True)
 
 
 # pylint: disable-next=too-few-public-methods
@@ -35,6 +38,11 @@ class PagesJ2Plugin(BasePlugin[PagesJ2PluginConfig]):
         Build the `.pages` files from `pages.j2`
         """
         logger.info("%s Building .pages files", TAG)
+        if self.config["use_extra"]:
+            variables = config.get("extra", {})
+        else:
+            variables = config
+
         for root, _, files in os.walk(config["docs_dir"], topdown=False):
             env = jinja2.Environment(
                 loader=jinja2.FileSystemLoader(root),
@@ -44,19 +52,15 @@ class PagesJ2Plugin(BasePlugin[PagesJ2PluginConfig]):
                     continue
 
                 template = env.get_template(name)
-                content = template.render(config)
+                content = template.render(variables)
                 dst = os.path.join(root, ".pages")
                 # Do not write the file if the content is the same.
                 # Otherwise, the "watcher" will continuously reload the page.
                 if os.path.exists(dst):
-                    with open(
-                        dst, encoding="utf-8"
-                    ) as f:  # pylint: disable=invalid-name
+                    with open(dst, encoding="utf-8") as f:
                         orig = f.read()
                     if content == orig:
                         continue
-                with open(
-                    dst, "w", encoding="utf-8"
-                ) as f:  # pylint: disable=invalid-name
+                with open(dst, "w", encoding="utf-8") as f:
                     logger.info("%s Writing %s", TAG, dst)
                     f.write(content)

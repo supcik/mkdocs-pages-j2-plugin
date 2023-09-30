@@ -21,6 +21,23 @@ plugins:
   - awesome-pages
 ```
 
+## Configuration
+
+The plugin can be configured in the `plugins` section of `mkdocs.yml` as follows:
+
+```yaml
+plugins:
+  ...
+  - pages-j2:
+      use_extra: true
+  ...
+```
+
+If `use_extra` is set to `true` (the default), the plugin will use the `extra` section of `mkdocs.yml` as context for
+rendering the templates. Otherwise, the plugin will use the full configuration.
+
+**Note that this feature has been added in version 0.3.0 and is a breaking change from version 0.2.x. Set `use_extra` to `false` if you want the same behaviour as in pre 0.3.0 versions.**
+
 ## Usage
 
 Example of a `.pages.j2` file:
