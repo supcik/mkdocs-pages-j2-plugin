@@ -1124,4 +1124,4 @@ test = ["mkdocs-awesome-pages-plugin", "mkdocs-macros-plugin", "mkdocs-material"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "24f315b5d150989c8da4b35ec09e55fa7510ef79d0acf5c46e114841c8a89122"
+content-hash = "b4c43e46e39e667f8b9a4b4ce78802cc759394c6cce061ad74c3b1a13fa85e69"
